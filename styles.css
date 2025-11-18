@@ -357,6 +357,9 @@ body {
     text-align: center;
     padding-top: 96px;
     overflow: hidden;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 }
 
 /* Floating background shapes animation */
@@ -2057,5 +2060,38 @@ section {
     footer {
         font-size: 0.8rem;
         padding: 1.5rem 1rem;
+    }
+}
+
+/* ============================================
+   MOBILE HERO ALIGNMENT FIX (320–420px)
+   ============================================ */
+@media (max-width: 480px) {
+
+    /* make sure page itself doesn't overflow */
+    html,
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* consistent container padding on both sides */
+    .container {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    /* remove extra side padding from the 3D wrapper */
+    .hero-3d-wrapper {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* hero card uses full container width and is centered */
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        box-sizing: border-box;
     }
 }
