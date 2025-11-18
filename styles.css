@@ -1954,3 +1954,108 @@ section {
         transition: none !important;
     }
 }
+
+/* ============================================
+   ULTRA-SMALL DEVICES — below 375px width
+   (iPhone SE, old Android, narrow screens)
+=============================================*/
+@media (max-width: 375px) {
+
+    /* Fix main container spacing */
+    .hero-content {
+        padding: 1.2rem 1rem;
+        max-width: 100%;
+        text-align: left;
+    }
+
+    /* Hero Badge */
+    .hero-badge {
+        font-size: 0.65rem;
+        padding: 6px 10px;
+    }
+
+    /* Hero Title */
+    .hero-content h1 {
+        font-size: 1.7rem;
+        line-height: 1.15;
+        word-break: break-word;
+    }
+
+    /* Hero Description */
+    .hero-content p {
+        font-size: 0.9rem;
+        line-height: 1.45;
+    }
+
+    /* Buttons Stack Vertical on Tiny Screens */
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+    /* Disable 3D transforms on ultra-small screens */
+    .tilt-card,
+    .tilt-soft,
+    .hero-content {
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .hero-3d-wrapper {
+        perspective: none !important;
+    }
+
+    /* Section spacing tweaks */
+    section {
+        padding: 2rem 1rem;
+    }
+
+    /* Stats section */
+    .stat-number {
+        font-size: 1.6rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
+    /* Services / Features grid */
+    .services-grid,
+    .features-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr !important; /* 1 column layout */
+        gap: 14px;
+    }
+
+    .services-grid .card,
+    .features-grid .card,
+    .gallery-item {
+        padding: 1rem;
+    }
+
+    /* Reduce image height for small screens */
+    .gallery-placeholder {
+        height: 220px;
+    }
+
+    /* Contact form inputs */
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 0.9rem;
+    }
+
+    /* Footer text */
+    footer {
+        font-size: 0.8rem;
+        padding: 1.5rem 1rem;
+    }
+}
