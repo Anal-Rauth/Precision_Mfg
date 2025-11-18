@@ -54,6 +54,98 @@ window.addEventListener('scroll', () => {
 });
 
 // ============================================
+// 3D hero tilt effect (mouse-based parallax)
+// ============================================
+const heroWrapper = document.querySelector('.hero-3d-wrapper');
+const heroCard = heroWrapper ? heroWrapper.querySelector('.hero-content') : null;
+const prefersReducedMotion =
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (heroWrapper && heroCard && !prefersReducedMotion) {
+    let heroTiltRAF = null;
+
+    const handleHeroMouseMove = (event) => {
+        const bounds = heroWrapper.getBoundingClientRect();
+        const offsetX = event.clientX - bounds.left;
+        const offsetY = event.clientY - bounds.top;
+        const centerX = bounds.width / 2;
+        const centerY = bounds.height / 2;
+        const rotateMax = 8; // max rotation in degrees
+
+        const rotateY = ((offsetX - centerX) / centerX) * rotateMax;
+        const rotateX = ((centerY - offsetY) / centerY) * rotateMax;
+
+        if (heroTiltRAF) cancelAnimationFrame(heroTiltRAF);
+
+        heroTiltRAF = requestAnimationFrame(() => {
+            heroCard.style.transform =
+                `rotateX(${rotateX.toFixed(2)}deg) ` +
+                `rotateY(${rotateY.toFixed(2)}deg) ` +
+                `translate3d(0, -6px, 40px)`;
+        });
+    };
+
+    const resetHeroTilt = () => {
+        if (heroTiltRAF) cancelAnimationFrame(heroTiltRAF);
+        heroCard.style.transform = 'translate3d(0, 0, 0)';
+    };
+
+    heroWrapper.addEventListener('mousemove', handleHeroMouseMove);
+    heroWrapper.addEventListener('mouseleave', resetHeroTilt);
+}
+
+// ============================================
+// Global 3D tilt for interactive cards
+// (services, features, gallery, testimonials, contact)
+// ============================================
+// Scroll-safe, logic-safe: purely visual transforms on .tilt-card / .tilt-soft
+function initTiltOnElements(selector, options = {}) {
+    const elements = document.querySelectorAll(selector);
+    if (!elements.length || prefersReducedMotion) return;
+
+    const maxRotate = options.maxRotate || 8;      // degrees
+    const maxTranslateZ = options.maxTranslateZ || 18; // px
+    const liftY = options.liftY || -6;            // px
+
+    elements.forEach((el) => {
+        let rafId = null;
+
+        const handleMove = (event) => {
+            const rect = el.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            const midX = rect.width / 2;
+            const midY = rect.height / 2;
+
+            const rotateY = ((x - midX) / midX) * maxRotate;   // left/right
+            const rotateX = ((midY - y) / midY) * maxRotate;   // up/down
+
+            if (rafId) cancelAnimationFrame(rafId);
+
+            rafId = requestAnimationFrame(() => {
+                el.style.transform =
+                    `rotateX(${rotateX.toFixed(2)}deg) ` +
+                    `rotateY(${rotateY.toFixed(2)}deg) ` +
+                    `translate3d(0, ${liftY}px, ${maxTranslateZ}px)`;
+            });
+        };
+
+        const reset = () => {
+            if (rafId) cancelAnimationFrame(rafId);
+            el.style.transform = 'translate3d(0, 0, 0)';
+        };
+
+        el.addEventListener('mousemove', handleMove);
+        el.addEventListener('mouseleave', reset);
+    });
+}
+
+// Apply 3D tilt everywhere we use tilt-card / tilt-soft
+initTiltOnElements('.tilt-card', { maxRotate: 9, maxTranslateZ: 22, liftY: -8 });
+initTiltOnElements('.tilt-soft', { maxRotate: 6, maxTranslateZ: 16, liftY: -4 });
+
+// ============================================
 // Active Navigation Link on Scroll
 // ============================================
 const sections = document.querySelectorAll('section[id]');
@@ -318,30 +410,59 @@ function showNotification(message, type = 'success') {
 
 // ============================================
 // Scroll Animations (Fade In on Scroll)
+// Scroll reveal animation + Staggered card reveal
 // ============================================
 const fadeElements = document.querySelectorAll(
-    '.service-card, .feature-item, .gallery-item, .about-content, .testimonials-slider, .contact-wrapper, .section-header'
+    '.about-content, .services-grid, .features-grid, .gallery-grid, .testimonials-slider, .contact-wrapper, .section-header'
 );
 
-const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }, index * 100);
-            fadeObserver.unobserve(entry.target);
-        }
-    });
-}, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+// Initialize base state for scroll reveal
+fadeElements.forEach(element => {
+    // Staggered card reveal for grids
+    if (element.matches('.services-grid, .features-grid, .gallery-grid')) {
+        const cards = Array.from(element.children);
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+        });
+    } else {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    }
 });
 
+const fadeObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                // Staggered card reveal for feature/service/gallery grids
+                if (entry.target.matches('.services-grid, .features-grid, .gallery-grid')) {
+                    const cards = Array.from(entry.target.children);
+                    cards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 120); // Staggered card reveal
+                    });
+                } else {
+                    // Simple scroll reveal animation
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+
+                fadeObserver.unobserve(entry.target);
+            }
+        });
+    },
+    {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    }
+);
+
 fadeElements.forEach(element => {
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(30px)';
-    element.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
     fadeObserver.observe(element);
 });
 

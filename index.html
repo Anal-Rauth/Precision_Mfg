@@ -33,7 +33,6 @@
                         <li><a href="#products" class="nav-link">Products / Machines</a></li>
                         <li><a href="#gallery" class="nav-link">Gallery</a></li>
                         <li><a href="#contact" class="nav-link">Contact Us</a></li>
-                        
                     </ul>
                     <div class="hamburger" id="hamburger">
                         <span></span>
@@ -55,42 +54,42 @@
             <div class="hero-shape hero-shape-3"></div>
         </div>
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-                    Trusted industrial manufacturing partner
-                </div>
-                <h1 class="hero-title">
-                    Precision <span class="hero-highlight">Manufacturing</span><br />
-                    for Modern Industry
-                </h1>
-                <p class="hero-subtitle">
-                    From CNC machining to complete assembly lines – we design, build, and maintain
-                    robust industrial solutions that keep your production running 24/7.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Get a project quote</a>
-                    <a href="#services" class="btn btn-secondary">View capabilities</a>
-                </div>
-                <div class="hero-meta">
-                    <div class="hero-meta-item">
-                        <span class="hero-meta-number">500+</span>
-                        <span class="hero-meta-label">Projects Delivered</span>
+            <!-- 3D hero wrapper (for tilt + depth) -->
+            <div class="hero-3d-wrapper">
+                <div class="hero-content">
+                    <div class="hero-badge floating-chip">
+                        <span class="badge-dot"></span>
+                        Trusted industrial manufacturing partner
                     </div>
-                    <div class="hero-meta-item">
-                        <span class="hero-meta-number">20+ yrs</span>
-                        <span class="hero-meta-label">Manufacturing Experience</span>
+                    <h1 class="hero-title">
+                        Precision <span class="hero-highlight">Manufacturing</span><br />
+                        for Modern Industry
+                    </h1>
+                    <p class="hero-subtitle">
+                        From CNC machining to complete assembly lines – we design, build, and maintain
+                        robust industrial solutions that keep your production running 24/7.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Get a project quote</a>
+                        <a href="#services" class="btn btn-secondary">View capabilities</a>
                     </div>
-                    <div class="hero-meta-item">
-                        <span class="hero-meta-number">98%</span>
-                        <span class="hero-meta-label">Client Satisfaction</span>
+                    <div class="hero-meta">
+                        <div class="hero-meta-item">
+                            <span class="hero-meta-number">500+</span>
+                            <span class="hero-meta-label">Projects Delivered</span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span class="hero-meta-number">20+ yrs</span>
+                            <span class="hero-meta-label">Manufacturing Experience</span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span class="hero-meta-number">98%</span>
+                            <span class="hero-meta-label">Client Satisfaction</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <div class="hero-scroll"> -->
-            <!-- <div class="scroll-indicator"></div> -->
-        <!-- </div> -->
     </section>
 
     <!-- About Us Section -->
@@ -136,7 +135,7 @@
                 </div>
                 <div class="about-image">
                     <div class="image-glow"></div>
-                    <div class="image-placeholder">
+                    <div class="image-placeholder floating-panel">
                         <!-- Manufacturing background image -->
                         <img src="https://images.pexels.com/photos/3735781/pexels-photo-3735781.jpeg?auto=compress&cs=tinysrgb&w=1200"
                             alt="CNC machine in factory" loading="lazy">
@@ -157,93 +156,115 @@
                 </p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <!-- icon svg unchanged -->
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="48" height="48" rx="12" fill="#e0ecff" />
-                            <path d="M24 12L30 18H26V28H22V18H18L24 12Z" fill="#1f6feb" />
-                            <path d="M16 32H32V34H16V32Z" fill="#1f6feb" />
-                        </svg>
+                <div class="service-card tilt-card">
+                    <div class="service-card-inner">
+                        <div class="service-icon floating-icon">
+                            <!-- icon svg unchanged -->
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="48" height="48" rx="12" fill="#e0ecff" />
+                                <path d="M24 12L30 18H26V28H22V18H18L24 12Z" fill="#1f6feb" />
+                                <path d="M16 32H32V34H16V32Z" fill="#1f6feb" />
+                            </svg>
+                        </div>
+                        <h3>Precision Machining</h3>
+                        <p>
+                            High-precision CNC machining services for complex components with tight tolerances and
+                            superior
+                            surface finishes.
+                        </p>
                     </div>
-                    <h3>Precision Machining</h3>
-                    <p>
-                        High-precision CNC machining services for complex components with tight tolerances and superior
-                        surface finishes.
-                    </p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="48" height="48" rx="12" fill="#e0ecff" />
-                            <path
-                                d="M24 16C28.4183 16 32 19.5817 32 24C32 28.4183 28.4183 32 24 32C19.5817 32 16 28.4183 16 24C16 19.5817 19.5817 16 24 16Z"
-                                fill="#1f6feb" />
-                            <path d="M24 20V24L27 27" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
-                        </svg>
+                <div class="service-card tilt-card">
+                    <div class="service-card-inner">
+                        <div class="service-icon floating-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="48" height="48" rx="12" fill="#e0ecff" />
+                                <path
+                                    d="M24 16C28.4183 16 32 19.5817 32 24C32 28.4183 28.4183 32 24 32C19.5817 32 16 28.4183 16 24C16 19.5817 19.5817 16 24 16Z"
+                                    fill="#1f6feb" />
+                                <path d="M24 20V24L27 27" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <h3>Custom Fabrication</h3>
+                        <p>
+                            Tailored fabrication solutions designed to your exact specifications, from prototype to full
+                            production runs.
+                        </p>
                     </div>
-                    <h3>Custom Fabrication</h3>
-                    <p>
-                        Tailored fabrication solutions designed to your exact specifications, from prototype to full
-                        production runs.
-                    </p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="48" height="48" rx="12" fill="#e0ecff" />
-                            <path d="M16 20H32M16 24H32M16 28H24" stroke="#1f6feb" stroke-width="2"
-                                stroke-linecap="round" />
-                            <rect x="14" y="16" width="20" height="16" rx="2" stroke="#1f6feb" stroke-width="2" />
-                        </svg>
+                <div class="service-card tilt-card">
+                    <div class="service-card-inner">
+                        <div class="service-icon floating-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="48" height="48" rx="12" fill="#e0ecff" />
+                                <path d="M16 20H32M16 24H32M16 28H24" stroke="#1f6feb" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <rect x="14" y="16" width="20" height="16" rx="2" stroke="#1f6feb" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <h3>Assembly Services</h3>
+                        <p>
+                            Complete assembly and integration services ensuring seamless production and quality control
+                            at
+                            every step.
+                        </p>
                     </div>
-                    <h3>Assembly Services</h3>
-                    <p>
-                        Complete assembly and integration services ensuring seamless production and quality control at
-                        every step.
-                    </p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="48" height="48" rx="12" fill="#e0ecff" />
-                            <path d="M24 14V34M14 24H34" stroke="#1f6feb" stroke-width="2" stroke-linecap="round" />
-                            <circle cx="24" cy="24" r="8" stroke="#1f6feb" stroke-width="2" />
-                        </svg>
+                <div class="service-card tilt-card">
+                    <div class="service-card-inner">
+                        <div class="service-icon floating-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="48" height="48" rx="12" fill="#e0ecff" />
+                                <path d="M24 14V34M14 24H34" stroke="#1f6feb" stroke-width="2" stroke-linecap="round" />
+                                <circle cx="24" cy="24" r="8" stroke="#1f6feb" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <h3>Quality Control</h3>
+                        <p>
+                            Rigorous quality assurance and testing protocols to ensure every product meets the highest
+                            industry standards.
+                        </p>
                     </div>
-                    <h3>Quality Control</h3>
-                    <p>
-                        Rigorous quality assurance and testing protocols to ensure every product meets the highest
-                        industry standards.
-                    </p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="48" height="48" rx="12" fill="#e0ecff" />
-                            <path d="M20 18L28 24L20 30V18Z" fill="#1f6feb" />
-                            <rect x="14" y="16" width="20" height="16" rx="2" stroke="#1f6feb" stroke-width="2" />
-                        </svg>
+                <div class="service-card tilt-card">
+                    <div class="service-card-inner">
+                        <div class="service-icon floating-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="48" height="48" rx="12" fill="#e0ecff" />
+                                <path d="M20 18L28 24L20 30V18Z" fill="#1f6feb" />
+                                <rect x="14" y="16" width="20" height="16" rx="2" stroke="#1f6feb" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <h3>Design & Engineering</h3>
+                        <p>
+                            Expert design and engineering services to optimize your products for manufacturing
+                            efficiency
+                            and performance.
+                        </p>
                     </div>
-                    <h3>Design & Engineering</h3>
-                    <p>
-                        Expert design and engineering services to optimize your products for manufacturing efficiency
-                        and performance.
-                    </p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="48" height="48" rx="12" fill="#e0ecff" />
-                            <path d="M24 16L30 22H26V30H22V22H18L24 16Z" fill="#1f6feb" />
-                            <path d="M16 34H32" stroke="#1f6feb" stroke-width="2" stroke-linecap="round" />
-                        </svg>
+                <div class="service-card tilt-card">
+                    <div class="service-card-inner">
+                        <div class="service-icon floating-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="48" height="48" rx="12" fill="#e0ecff" />
+                                <path d="M24 16L30 22H26V30H22V22H18L24 16Z" fill="#1f6feb" />
+                                <path d="M16 34H32" stroke="#1f6feb" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <h3>Maintenance & Support</h3>
+                        <p>
+                            Comprehensive maintenance programs and technical support to keep your equipment running at
+                            peak
+                            performance.
+                        </p>
                     </div>
-                    <h3>Maintenance & Support</h3>
-                    <p>
-                        Comprehensive maintenance programs and technical support to keep your equipment running at peak
-                        performance.
-                    </p>
                 </div>
             </div>
         </div>
@@ -260,52 +281,67 @@
                 </p>
             </div>
             <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-number">01</div>
-                    <h3>Advanced Technology</h3>
-                    <p>
-                        State-of-the-art machinery and cutting-edge manufacturing processes ensure precision and
-                        efficiency.
-                    </p>
+                <div class="feature-item tilt-card">
+                    <div class="feature-inner">
+                        <div class="feature-number">01</div>
+                        <h3>Advanced Technology</h3>
+                        <p>
+                            State-of-the-art machinery and cutting-edge manufacturing processes ensure precision and
+                            efficiency.
+                        </p>
+                    </div>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-number">02</div>
-                    <h3>Expert Team</h3>
-                    <p>
-                        Our skilled engineers and technicians bring years of experience and expertise to every project.
-                    </p>
+                <div class="feature-item tilt-card">
+                    <div class="feature-inner">
+                        <div class="feature-number">02</div>
+                        <h3>Expert Team</h3>
+                        <p>
+                            Our skilled engineers and technicians bring years of experience and expertise to every
+                            project.
+                        </p>
+                    </div>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-number">03</div>
-                    <h3>Quality Assurance</h3>
-                    <p>
-                        Rigorous quality control measures guarantee that every product meets or exceeds industry
-                        standards.
-                    </p>
+                <div class="feature-item tilt-card">
+                    <div class="feature-inner">
+                        <div class="feature-number">03</div>
+                        <h3>Quality Assurance</h3>
+                        <p>
+                            Rigorous quality control measures guarantee that every product meets or exceeds industry
+                            standards.
+                        </p>
+                    </div>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-number">04</div>
-                    <h3>Timely Delivery</h3>
-                    <p>
-                        We understand the importance of deadlines and consistently deliver projects on time and within
-                        budget.
-                    </p>
+                <div class="feature-item tilt-card">
+                    <div class="feature-inner">
+                        <div class="feature-number">04</div>
+                        <h3>Timely Delivery</h3>
+                        <p>
+                            We understand the importance of deadlines and consistently deliver projects on time and
+                            within
+                            budget.
+                        </p>
+                    </div>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-number">05</div>
-                    <h3>Competitive Pricing</h3>
-                    <p>
-                        Cost-effective solutions without compromising on quality, providing excellent value for your
-                        investment.
-                    </p>
+                <div class="feature-item tilt-card">
+                    <div class="feature-inner">
+                        <div class="feature-number">05</div>
+                        <h3>Competitive Pricing</h3>
+                        <p>
+                            Cost-effective solutions without compromising on quality, providing excellent value for your
+                            investment.
+                        </p>
+                    </div>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-number">06</div>
-                    <h3>Customer Support</h3>
-                    <p>
-                        Dedicated support team available to assist you throughout the entire manufacturing process and
-                        beyond.
-                    </p>
+                <div class="feature-item tilt-card">
+                    <div class="feature-inner">
+                        <div class="feature-number">06</div>
+                        <h3>Customer Support</h3>
+                        <p>
+                            Dedicated support team available to assist you throughout the entire manufacturing process
+                            and
+                            beyond.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -322,40 +358,52 @@
                 </p>
             </div>
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <img src="https://images.pexels.com/photos/3735761/pexels-photo-3735761.jpeg?auto=compress&cs=tinysrgb&w=800"
-                            alt="Industrial project 1" loading="lazy">
+                <div class="gallery-item tilt-card">
+                    <div class="gallery-inner">
+                        <div class="gallery-placeholder">
+                            <img src="./images/Industrial project1.jpg"
+                                alt="Industrial project 1" loading="lazy">
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <img src="https://images.pexels.com/photos/3735431/pexels-photo-3735431.jpeg?auto=compress&cs=tinysrgb&w=800"
-                            alt="Industrial project 2" loading="lazy">
+                <div class="gallery-item tilt-card">
+                    <div class="gallery-inner">
+                        <div class="gallery-placeholder">
+                            <img src="./images/Industrial project2.jpg"
+                                alt="Industrial project 2" loading="lazy">
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <img src="https://images.pexels.com/photos/3735438/pexels-photo-3735438.jpeg?auto=compress&cs=tinysrgb&w=800"
-                            alt="Industrial project 3" loading="lazy">
+                <div class="gallery-item tilt-card">
+                    <div class="gallery-inner">
+                        <div class="gallery-placeholder">
+                            <img src="./images/Industrial project3.jpg"
+                                alt="Industrial project 3" loading="lazy">
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <img src="https://images.pexels.com/photos/3735078/pexels-photo-3735078.jpeg?auto=compress&cs=tinysrgb&w=800"
-                            alt="Industrial project 4" loading="lazy">
+                <div class="gallery-item tilt-card">
+                    <div class="gallery-inner">
+                        <div class="gallery-placeholder">
+                            <img src="./images/Industrial project4.jpg"
+                                alt="Industrial project 4" loading="lazy">
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <img src="https://images.pexels.com/photos/3735814/pexels-photo-3735814.jpeg?auto=compress&cs=tinysrgb&w=800"
-                            alt="Industrial project 5" loading="lazy">
+                <div class="gallery-item tilt-card">
+                    <div class="gallery-inner">
+                        <div class="gallery-placeholder">
+                            <img src="./images/Industrial project5.jpg"
+                                alt="Industrial project 5" loading="lazy">
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <img src="https://images.pexels.com/photos/3735873/pexels-photo-3735873.jpeg?auto=compress&cs=tinysrgb&w=800"
-                            alt="Industrial project 6" loading="lazy">
+                <div class="gallery-item tilt-card">
+                    <div class="gallery-inner">
+                        <div class="gallery-placeholder">
+                            <img src="./images/Industrial project6.jpg"
+                                alt="Industrial project 6" loading="lazy">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -374,7 +422,7 @@
             </div>
             <div class="testimonials-slider">
                 <div class="testimonial-card active">
-                    <div class="testimonial-content">
+                    <div class="testimonial-content tilt-soft">
                         <div class="quote-icon">"</div>
                         <p class="testimonial-text">
                             Precision Manufacturing Co. has been our trusted partner for over 5 years. Their attention
@@ -383,7 +431,7 @@
                             expectations.
                         </p>
                         <div class="testimonial-author">
-                            <div class="author-avatar">
+                            <div class="author-avatar floating-icon">
                                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="30" cy="30" r="30" fill="#e0ecff" />
@@ -399,7 +447,7 @@
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <div class="testimonial-content">
+                    <div class="testimonial-content tilt-soft">
                         <div class="quote-icon">"</div>
                         <p class="testimonial-text">
                             The team at Precision Manufacturing is professional, knowledgeable, and always willing to go
@@ -408,7 +456,7 @@
                             efficiently.
                         </p>
                         <div class="testimonial-author">
-                            <div class="author-avatar">
+                            <div class="author-avatar floating-icon">
                                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="30" cy="30" r="30" fill="#fce7f3" />
@@ -424,7 +472,7 @@
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <div class="testimonial-content">
+                    <div class="testimonial-content tilt-soft">
                         <div class="quote-icon">"</div>
                         <p class="testimonial-text">
                             Outstanding quality and service! They transformed our production process and significantly
@@ -433,7 +481,7 @@
                             partners.
                         </p>
                         <div class="testimonial-author">
-                            <div class="author-avatar">
+                            <div class="author-avatar floating-icon">
                                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="30" cy="30" r="30" fill="#dcfce7" />
@@ -472,7 +520,7 @@
                     </div>
                     <div class="contact-details">
                         <div class="contact-item">
-                            <div class="contact-icon">
+                            <div class="contact-icon floating-icon">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -487,7 +535,7 @@
                             </div>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-icon">
+                            <div class="contact-icon floating-icon">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -501,7 +549,7 @@
                             </div>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-icon">
+                            <div class="contact-icon floating-icon">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -516,7 +564,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form-wrapper">
+                <div class="contact-form-wrapper tilt-soft">
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
                             <label for="name">Full Name *</label>
