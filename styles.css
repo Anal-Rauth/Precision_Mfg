@@ -1944,3 +1944,13 @@ section {
         scroll-behavior: auto !important;
     }
 }
+
+@media (max-width: 768px) {
+
+    .tilt-card,
+    .tilt-soft,
+    .hero-content {
+        transform: none !important;
+        transition: none !important;
+    }
+}
