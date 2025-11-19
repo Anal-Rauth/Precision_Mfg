@@ -71,7 +71,8 @@ if (heroWrapper && heroCard && !prefersReducedMotion) {
         const offsetY = event.clientY - bounds.top;
         const centerX = bounds.width / 2;
         const centerY = bounds.height / 2;
-        const rotateMax = 8; // max rotation in degrees
+        theRotateMax = 8; // max rotation in degrees
+        const rotateMax = 8;
 
         const rotateY = ((offsetX - centerX) / centerX) * rotateMax;
         const rotateX = ((centerY - offsetY) / centerY) * rotateMax;
@@ -99,7 +100,6 @@ if (heroWrapper && heroCard && !prefersReducedMotion) {
 // Global 3D tilt for interactive cards
 // (services, features, gallery, testimonials, contact)
 // ============================================
-// Scroll-safe, logic-safe: purely visual transforms on .tilt-card / .tilt-soft
 function initTiltOnElements(selector, options = {}) {
     const elements = document.querySelectorAll(selector);
     if (!elements.length || prefersReducedMotion) return;
@@ -141,7 +141,6 @@ function initTiltOnElements(selector, options = {}) {
     });
 }
 
-// Apply 3D tilt everywhere we use tilt-card / tilt-soft
 initTiltOnElements('.tilt-card', { maxRotate: 9, maxTranslateZ: 22, liftY: -8 });
 initTiltOnElements('.tilt-soft', { maxRotate: 6, maxTranslateZ: 16, liftY: -4 });
 
@@ -193,46 +192,63 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // ============================================
 // Animated Counter for Statistics
+// (now works on mobile + desktop)
 // ============================================
-function animateCounter(element, target, duration = 2000) {
-    let start = 0;
-    const increment = target / (duration / 16);
+const statNumbers = document.querySelectorAll('.stat-number');
 
-    const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-            element.textContent = target + (target === 98 ? '%' : '+');
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(start) + (target === 98 ? '%' : '+');
-        }
-    }, 16);
+function formatCounterText(target, value, done) {
+    const suffix = target === 98 ? '%' : '+';
+    const finalValue = done ? target : value;
+    return `${finalValue}${suffix}`;
 }
 
-// Intersection Observer for counter animation
-const observerOptions = {
-    threshold: 0.5,
-    rootMargin: '0px'
-};
+function animateStatNumber(el) {
+    const target = parseInt(el.dataset.target || el.textContent || '0', 10);
+    const duration = 2000; // ms
+    const startTime = performance.now();
 
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const statNumbers = entry.target.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.getAttribute('data-target'));
-                if (!stat.classList.contains('animated')) {
-                    stat.classList.add('animated');
-                    animateCounter(stat, target);
-                }
-            });
+    const step = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const current = Math.floor(progress * target);
+        el.textContent = formatCounterText(target, current, progress === 1);
+
+        if (progress < 1) {
+            requestAnimationFrame(step);
         }
-    });
-}, observerOptions);
+    };
 
-const aboutSection = document.querySelector('.about');
-if (aboutSection) {
-    statsObserver.observe(aboutSection);
+    requestAnimationFrame(step);
+}
+
+if (statNumbers.length) {
+    if (!('IntersectionObserver' in window)) {
+        // Fallback: just set final values
+        statNumbers.forEach(el => {
+            const target = parseInt(el.dataset.target || el.textContent || '0', 10);
+            el.textContent = formatCounterText(target, target, true);
+        });
+    } else {
+        const counterObserver = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        if (!el.dataset.animated) {
+                            el.dataset.animated = 'true';
+                            animateStatNumber(el);
+                        }
+                        observer.unobserve(el);
+                    }
+                });
+            },
+            {
+                threshold: 0.2,
+                rootMargin: '0px 0px -20% 0px'
+            }
+        );
+
+        statNumbers.forEach(el => counterObserver.observe(el));
+    }
 }
 
 // ============================================
@@ -243,11 +259,9 @@ const testimonialDots = document.querySelectorAll('.dot');
 let currentTestimonial = 0;
 
 function showTestimonial(index) {
-    // Hide all testimonials
     testimonialCards.forEach(card => card.classList.remove('active'));
     testimonialDots.forEach(dot => dot.classList.remove('active'));
 
-    // Show selected testimonial
     if (testimonialCards[index]) {
         testimonialCards[index].classList.add('active');
     }
@@ -258,14 +272,12 @@ function showTestimonial(index) {
     currentTestimonial = index;
 }
 
-// Dot navigation
 testimonialDots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
         showTestimonial(index);
     });
 });
 
-// Auto-play testimonials
 let testimonialInterval;
 
 function startTestimonialSlider() {
@@ -275,11 +287,9 @@ function startTestimonialSlider() {
     }, 5000);
 }
 
-// Start auto-play
 if (testimonialCards.length > 0) {
     startTestimonialSlider();
 
-    // Pause on hover
     const testimonialsSection = document.querySelector('.testimonials-slider');
     if (testimonialsSection) {
         testimonialsSection.addEventListener('mouseenter', () => {
@@ -301,30 +311,25 @@ if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // Get form data
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData);
 
-        // Simple form validation
         if (!data.name || !data.email || !data.message) {
             showNotification('Please fill in all required fields.', 'error');
             return;
         }
 
-        // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
             showNotification('Please enter a valid email address.', 'error');
             return;
         }
 
-        // Simulate form submission
         const submitButton = contactForm.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
         submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
 
-        // Simulate API call
         setTimeout(() => {
             showNotification('Thank you! Your quote request has been submitted successfully. We will contact you soon.', 'success');
             contactForm.reset();
@@ -338,18 +343,15 @@ if (contactForm) {
 // Notification System
 // ============================================
 function showNotification(message, type = 'success') {
-    // Remove existing notification if any
     const existingNotification = document.querySelector('.notification');
     if (existingNotification) {
         existingNotification.remove();
     }
 
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
 
-    // Add styles
     notification.style.cssText = `
         position: fixed;
         top: 96px;
@@ -368,7 +370,6 @@ function showNotification(message, type = 'success') {
         border: 1px solid rgba(15, 23, 42, 0.6);
     `;
 
-    // Add animation keyframes if not already added
     if (!document.querySelector('#notification-styles')) {
         const style = document.createElement('style');
         style.id = 'notification-styles';
@@ -399,7 +400,6 @@ function showNotification(message, type = 'success') {
 
     document.body.appendChild(notification);
 
-    // Auto remove after 5 seconds
     setTimeout(() => {
         notification.style.animation = 'slideOutRight 0.3s ease';
         setTimeout(() => {
@@ -410,15 +410,12 @@ function showNotification(message, type = 'success') {
 
 // ============================================
 // Scroll Animations (Fade In on Scroll)
-// Scroll reveal animation + Staggered card reveal
 // ============================================
 const fadeElements = document.querySelectorAll(
     '.about-content, .services-grid, .features-grid, .gallery-grid, .testimonials-slider, .contact-wrapper, .section-header'
 );
 
-// Initialize base state for scroll reveal
 fadeElements.forEach(element => {
-    // Staggered card reveal for grids
     if (element.matches('.services-grid, .features-grid, .gallery-grid')) {
         const cards = Array.from(element.children);
         cards.forEach(card => {
@@ -437,17 +434,15 @@ const fadeObserver = new IntersectionObserver(
     (entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                // Staggered card reveal for feature/service/gallery grids
                 if (entry.target.matches('.services-grid, .features-grid, .gallery-grid')) {
                     const cards = Array.from(entry.target.children);
                     cards.forEach((card, index) => {
                         setTimeout(() => {
                             card.style.opacity = '1';
                             card.style.transform = 'translateY(0)';
-                        }, index * 120); // Staggered card reveal
+                        }, index * 120);
                     });
                 } else {
-                    // Simple scroll reveal animation
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
                 }
@@ -473,7 +468,6 @@ const galleryItems = document.querySelectorAll('.gallery-item');
 
 galleryItems.forEach(item => {
     item.addEventListener('click', () => {
-        // Future: Implement lightbox functionality
         console.log('Gallery item clicked');
     });
 });
@@ -494,7 +488,6 @@ formInputs.forEach(input => {
         }
     });
 
-    // Check if input has value on load
     if (input.value) {
         input.parentElement.classList.add('focused');
     }
@@ -511,12 +504,10 @@ if (window.history.replaceState) {
 // Initialize on DOM Load
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-    // Activate first navigation link
     if (window.scrollY < 100) {
         navLinks[0]?.classList.add('active');
     }
 
-    // Initialize scroll position
     activateNavLink();
 
     console.log('Manufacturing Website Initialized');
