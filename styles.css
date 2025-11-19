@@ -1673,6 +1673,42 @@ section {
    .contact-wrapper, .section-header
    to create scroll reveal animation.
 */
+/* Navbar Search (inside nav-menu) */
+.nav-search-item {
+    list-style: none;
+}
+
+.nav-search {
+    margin-left: 1.25rem;
+}
+
+.nav-search input {
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.8);
+    font-size: 0.85rem;
+    outline: none;
+    background-color: #f9fafb;
+    min-width: 160px;
+}
+
+.nav-search input:focus {
+    border-color: rgba(31, 111, 235, 0.95);
+    box-shadow: 0 0 0 1px rgba(31, 111, 235, 0.5);
+}
+
+/* ✅ MOBILE: show full-width search inside slide-out menu */
+@media (max-width: 768px) {
+    .nav-search {
+        width: 100%;
+        margin: 0;
+        margin-top: 0.75rem;
+    }
+
+    .nav-search input {
+        width: 100%;
+    }
+}
 
 /* ============================================
    Responsive Design - Tablet
