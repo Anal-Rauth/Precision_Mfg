@@ -2188,3 +2188,74 @@ section {
         font-size: 1.4rem;
     }
 }
+
+/* 🔧 Remove box/card design from hero content */
+.hero-content {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+/* Remove 3D glow/overlay around hero */
+.hero-3d-wrapper::before {
+    display: none !important;
+}
+
+/* Disable hover 3D effect on hero content */
+.hero-3d-wrapper:hover .hero-content {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ================================
+   GLOBAL: REMOVE BOX / CARD DESIGN
+   ================================ */
+
+/* 1) Remove white boxes, borders, shadows, rounding */
+.hero-content,
+.service-card,
+.feature-item,
+.gallery-item,
+.testimonial-content,
+.contact-form-wrapper,
+.stat-item {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+/* 2) Kill hover lift / 3D effects on all cards */
+.hero-3d-wrapper:hover .hero-content,
+.service-card:hover,
+.feature-item:hover,
+.gallery-item:hover,
+.testimonial-content,
+.contact-form-wrapper:hover,
+.tilt-card,
+.tilt-card:hover,
+.tilt-soft,
+.tilt-soft:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* 3) Remove extra glow / overlays on cards */
+.service-card::before,
+.feature-item::after,
+.gallery-item::after,
+.hero-content::before {
+    display: none !important;
+}
+
+/* 4) Optional: keep spacing but make everything feel flat */
+.services,
+.why-choose-us,
+.gallery,
+.testimonials,
+.contact,
+.about {
+    background: #f9fafb;
+}
